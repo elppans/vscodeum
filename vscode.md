@@ -21,13 +21,13 @@ O **Visual Studio Code (VS Code)** e o **VSCodium** são editores de código pop
 
 - Links:
 
-VS Code na web: https://vscode.dev
-VS Code: https://code.visualstudio.com/download
-VS Codium: https://vscodium.com/
-VS Codium Github: https://github.com/VSCodium/vscodium
-Temas VSCode: [vscodethemes.com](https://vscodethemes.com/)
-Extensões para VSCode: https://marketplace.visualstudio.com/vscode
-Extensões para VSCodium: https://open-vsx.org/
+VS Code na web: https://vscode.dev  
+VS Code: https://code.visualstudio.com/download  
+VS Codium: https://vscodium.com/  
+VS Codium Github: https://github.com/VSCodium/vscodium  
+Temas VSCode: [vscodethemes.com](https://vscodethemes.com/)  
+Extensões para VSCode: https://marketplace.visualstudio.com/vscode  
+Extensões para VSCodium: https://open-vsx.org/  
 
 - Temas:
 
@@ -39,7 +39,7 @@ Extensões para VSCodium: https://open-vsx.org/
 
 - Extensões:
 
-  - [Emmet Cheat Sheet]([Cheat Sheet](https://docs.emmet.io/cheat-sheet/)) (Auto completar(comandos do emmet)) -
+  - [Emmet Cheat Sheet]([Cheat Sheet](https://docs.emmet.io/cheat-sheet/)) (Auto completar(comandos do emmet))  
 
   > Ps.: Nas últimas atualizações do VSCode incorporou a extensão Emmet, então agora não precisa mais instalar.
 
@@ -60,46 +60,44 @@ Extensões para VSCodium: https://open-vsx.org/
 
 - Customizações:
 
-[VSCode minimal](https://gist.github.com/henriquesss/e6e4999653441c5c4796aec943bfe3a4)
-[VSCode minimal atualizado:](https://gist.github.com/diego3g/b1b189063d21b96d6144ca896755be64)
+[VSCode minimal](https://gist.github.com/henriquesss/e6e4999653441c5c4796aec943bfe3a4)  
+[VSCode minimal atualizado:](https://gist.github.com/diego3g/b1b189063d21b96d6144ca896755be64)  
 
-CTRL+SHIFT+P - Mostrar todos os comandos
-Digitar open settings: Preferences: Open user settings (json)
+CTRL+SHIFT+P - Mostrar todos os comandos  
+Digitar open settings: Preferences: Open user settings (json)  
 
-Adicionar:
+Adicionar:  
 
-Ao usar CTRL+S, terá uma ação:
+Ao usar CTRL+S, terá uma ação:  
 
-> Quando o código tiver um erro, corrigir automaticamente:
-> "editor.codeActionsOnSave": {
-> "source.fixAll.eslint": true
-> }
-> Irá formatar o código automaticamente:
-> "editor.formatOnSave": true
+> Quando o código tiver um erro, corrigir automaticamente:  
+> "editor.codeActionsOnSave": {  
+> "source.fixAll.eslint": true  
+> }  
+> Irá formatar o código automaticamente:  
+> "editor.formatOnSave": true  
 
-- Atalhos úteis:
+- Atalhos úteis:  
 
-f2 = renomear por tarde do arquivo;
-f2 \* ao selecionar nome - variavel ou funcao, renomea todas as referências dele no projeto;
-ctrl + shift + L = seleciona todas referencias de um nome;
-ctrl + b = esconder seleção de arquivos;
-ctrl + k z = modo zen;
-ctrl + p = buscar/abrir aquivo
-@ = passa a usar todos os elementos do arquivo aberto;
-: = filtro;
-ctrl + shift + . = navega entre cada elemento do arquivo;
-ctrl + . = ver datalhe (ou corrigir) do erro na linha selecionada;
+f2 = renomear por tarde do arquivo;  
+f2 \* ao selecionar nome - variavel ou funcao, renomea todas as referências dele no projeto;  
+ctrl + shift + L = seleciona todas referencias de um nome;  
+ctrl + b = esconder seleção de arquivos;  
+ctrl + k z = modo zen;  
+ctrl + p = buscar/abrir aquivo;  
+@ = passa a usar todos os elementos do arquivo aberto;  
+: = filtro;  
+ctrl + shift + . = navega entre cada elemento do arquivo;  
+ctrl + . = ver datalhe (ou corrigir) do erro na linha selecionada;  
+Ctrl + shift + p = comparar arquivos entre versões;  
+alt + f5 = pular cada alteração;  
+shift + f5 = voltar cada alteração;  
+cltr + k c = comparar arquivo com código no clipboard;  
+alt + shift + f5 = fechar comparação;  
 
-Ctrl + shift + p = comparar arquivos entre versões;
-alt + f5 = pular cada alteração;
-shift + f5 = voltar cada alteração;
-
-cltr + k c = comparar arquivo com código no clipboard;
-alt + shift + f5 = fechar comparação;
-
-Fontes:
-https://www.youtube.com/watch?v=uxln1hT_Ev4
-https://www.youtube.com/watch?v=Ni_9mo932nA
-https://www.youtube.com/watch?v=TW3KoPkuWEA
-https://www.youtube.com/watch?v=qJ_M4W0u5rI
-https://www.youtube.com/watch?v=468TtYwJx9w
+Fontes:  
+https://www.youtube.com/watch?v=uxln1hT_Ev4  
+https://www.youtube.com/watch?v=Ni_9mo932nA  
+https://www.youtube.com/watch?v=TW3KoPkuWEA  
+https://www.youtube.com/watch?v=qJ_M4W0u5rI  
+https://www.youtube.com/watch?v=468TtYwJx9w  
