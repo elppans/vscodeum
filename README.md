@@ -1,1 +1,1 @@
-# [vscode(um)](vscode)
+# [vscode(um)](./vscode)
