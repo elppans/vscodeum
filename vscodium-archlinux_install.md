@@ -17,3 +17,22 @@ Opcional: [vscodium-marketplace](https://aur.archlinux.org/packages/vscodium-mar
 ```bash
 yay -Syu vscodium-bin
 ```
+___
+## Pacotes opcionais recomendado
+
+Lista de outros pacotes opcionais mas que ajudam muito, recomendados para instalar no sistema
+
+- Um comparador de arquivos, diretórios, etc. CLI e GUI
+```bash
+sudo pacman -S diffutils meld
+```
+- Formatadores e Lints para Shell, Java, CSS, etc.
+```bash
+sudo pacman --needed -S shfmt shellcheck prettier eslint stylelint
+```
+
+- Formatador Opcional para CSS (AUR)
+```bash
+sudo pacman --needed -S nodejs-csscomb
+```
+___
