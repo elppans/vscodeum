@@ -24,7 +24,7 @@ Lista de outros pacotes opcionais mas que ajudam muito, recomendados para instal
 
 - Um comparador de arquivos, diretórios, etc. CLI e GUI
 ```bash
-sudo pacman -S diffutils meld
+sudo pacman --needed -S diffutils meld
 ```
 - Formatadores e Lints para Shell, Java, CSS, etc.
 ```bash
