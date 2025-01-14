@@ -2,6 +2,7 @@
 
 - Acesso SSH Dev.  
 [open-remote-ssh](https://open-vsx.org/extension/jeanp413/open-remote-ssh):`VSCodium`. Acesso SSH como seu ambiente de desenvolvimento (Com suporte ao **Search**).  
+Seguir [Open Remote - SSH, VSCode(um), acesso SSH com chave privada](https://github.com/elppans/vscodeum/blob/main/open-Remote-ssh_acesso_ssh_usando_chave_privada.md)  
 [remote-ssh](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh):`VSCode`. Acesso SSH como seu ambiente de desenvolvimento (Com suporte ao **Search**).  
 
 - Client SSH  
