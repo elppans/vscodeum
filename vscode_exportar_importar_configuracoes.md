@@ -81,3 +81,61 @@ Local dos arquivos:
  **Basta copiar esses arquivos para outro computador e substituir na mesma pasta**.
 
  Dessa forma, você pode sincronizar **sem precisar de conta**, apenas copiando e colando os arquivos entre máquinas.
+___
+# Se você não encontrou a opção de **Sincronização de Configurações (Settings Sync)**
+
+Pode ser por alguns motivos, dependendo de qual versão do **VSCode/VSCodium** você está usando. Vamos resolver isso!  
+
+---
+
+### **1 Verifique se o Settings Sync está disponível**  
+- **No VSCode:**  
+A sincronização vem embutida no VSCode desde a versão **1.48**. Se estiver usando uma versão antiga, **atualize** para a mais recente.  
+
+- **No VSCodium:**  
+O VSCodium **não inclui** a sincronização de fábrica porque não usa os serviços da Microsoft. Porém, você pode sincronizar **manualmente** copiando os arquivos de configuração (explicado abaixo).  
+
+---
+
+### **2 Como acessar o Settings Sync manualmente** (somente no VSCode)  
+Se você estiver usando **VSCode oficial** e não encontrou a opção no menu, tente:  
+
+- 1 Vá para **Arquivo** → **Preferências** → **Configurações**  
+- 2 No campo de busca, digite:  
+   ```
+   sync
+   ```
+- 3 Verifique se há a opção **Settings Sync** (ou "Sincronização de Configuração").  
+- 4 Se aparecer, ative e escolha quais itens deseja sincronizar.  
+
+---
+
+### **3 Sincronizar manualmente no VSCodium ou VSCode sem conta**  
+Se estiver no **VSCodium** ou quiser uma forma **sem precisar de conta**, siga este método:
+
+- **Backup das Configurações**  
+Copie os seguintes arquivos do seu computador atual:  
+
+  - `settings.json` → Configurações gerais  
+  - `keybindings.json` → Atalhos de teclado  
+  - `snippets/` → Snippets personalizados  
+  - `extensions.json` (ou use `code --list-extensions`)  
+
+- **Onde encontrar esses arquivos?**  
+
+  - **Windows:**  
+  ```
+  %APPDATA%\Code\User\
+  ```
+  *(Ou `%APPDATA%\VSCodium\User\` no VSCodium)*  
+
+  - **Linux/Mac:**  
+  ```
+  ~/.config/Code/User/
+  ```
+  *(Ou `~/.config/VSCodium/User/` no VSCodium)*  
+
+- **Restauração em outro computador**  
+No novo ambiente, basta **substituir** os arquivos na mesma pasta!  
+
+---
