@@ -248,5 +248,6 @@ backupvsc
 Agora seu backup inclui tudo: **configurações + extensões!**   
 ___
 
-- **Vídeo recomendado**  
-[Não Precisamos Mais nos Preocupar em Reconfigurar o VS Code (2 FORMAS SIMPLES), Canal Código Fonte TV](https://www.youtube.com/watch?v=cTJY-z3TbTw)
+- **Vídeos recomendados**  
+  - [Não Precisamos Mais nos Preocupar em Reconfigurar o VS Code (2 FORMAS SIMPLES), Canal Código Fonte TV](https://www.youtube.com/watch?v=cTJY-z3TbTw)  
+  - [Configurando o GitHub com o VS Code - Aprenda a Criar e Conectar Seus Projetos de Programação!, Canal Mestres da Web](https://www.youtube.com/watch?v=TrDBJ9HO3yE)  
