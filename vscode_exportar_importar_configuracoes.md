@@ -191,3 +191,62 @@ Para o **VSCodium**, já que ele não tem a sincronização embutida como o VSCo
 - Extensões instaladas  
 - Ícones e Temas  
 ___
+
+# Backup do VSCodium via Script no Linux
+
+Você pode baixar e executar o script [backup_vscodium.sh](https://raw.githubusercontent.com/elppans/vscodeum/refs/heads/main/backup_vscodium.sh) no **$HOME** do usuário e fazer um backup dos arquivos de configuração e extenções.  
+
+---
+
+###  Baixando e Executando o Script  
+1. **Baixe o script para o diretório `$HOME`**:  
+   ```sh
+   curl -o ~/backup_vscodium.sh https://raw.githubusercontent.com/elppans/vscodeum/refs/heads/main/backup_vscodium.sh
+   ```
+   *(Se `curl` não estiver instalado, use `wget` em vez disso:)*  
+   ```sh
+   wget -O ~/backup_vscodium.sh https://raw.githubusercontent.com/elppans/vscodeum/refs/heads/main/backup_vscodium.sh
+   ```
+
+2. **Dê permissão de execução**:  
+   ```sh
+   chmod +x ~/backup_vscodium.sh
+   ```
+
+3. **Execute o script**:  
+   ```sh
+   ~/backup_vscodium.sh
+   ```
+
+---
+
+###  Dica: Criar um Alias para Facilidade
+Se você pretende rodar o backup frequentemente, pode criar um **alias** no `.bashrc` ou `.zshrc`:  
+```sh
+echo "alias backupvsc='~/backup_vscodium.sh'" >> ~/.bashrc
+source ~/.bashrc
+```
+Agora, sempre que quiser fazer um backup, basta rodar:  
+```sh
+backupvsc
+```
+
+---
+
+##  Restaurando o Backup
+1. **Extraia o backup para restaurar as configurações**:
+   ```sh
+   tar -xzvf ~/Backup_VSCodium/vscodium_backup_YYYYMMDD_HHMMSS.tar.gz -C ~/.config/VSCodium/User/
+   ```
+   *(Substitua `YYYYMMDD_HHMMSS` pelo nome do arquivo gerado.)*
+
+2. **Restaurar as extensões instaladas**:
+   ```sh
+   cat ~/Backup_VSCodium/extensions_list.txt | xargs -L 1 codium --install-extension
+   ```
+
+Agora seu backup inclui tudo: **configurações + extensões!**   
+___
+
+- **Vídeo recomendado**  
+[Não Precisamos Mais nos Preocupar em Reconfigurar o VS Code (2 FORMAS SIMPLES), Canal Código Fonte TV](https://www.youtube.com/watch?v=cTJY-z3TbTw)
