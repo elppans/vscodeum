@@ -139,3 +139,52 @@ Copie os seguintes arquivos do seu computador atual:
 No novo ambiente, basta **substituir** os arquivos na mesma pasta!  
 
 ---
+# Extenção Settings Sync no VSCodium
+
+Para o **VSCodium**, já que ele não tem a sincronização embutida como o VSCode, você pode usar a extensão **"Settings Sync"** da marketplace OpenVSX.  
+
+---
+
+### ** Como Usar a Extensão "Settings Sync" no VSCodium**  
+
+- 1 **Instalar a Extensão**  
+  - Abra o VSCodium e vá até **Extensões** (`Ctrl + Shift + X`).  
+  - Busque por **"Settings Sync"** e instale a extensão de **Shan Khan**.  
+    - Se não encontrar na interface do VSCodium, rode este comando no terminal:  
+    ```sh
+    codium --install-extension Shan.code-settings-sync
+    ```
+
+- 2 **Configurar a Sincronização**  
+  - Após instalar, pressione `Ctrl + Shift + P` e digite:  
+  ```
+  Sync: Configure
+  ```
+  - A extensão pedirá que você faça login no **GitHub Gist**.  
+    - Se ainda não tem uma conta no GitHub, crie uma [aqui](https://github.com/).  
+    - Autorize a extensão para acessar seus "Gists".
+
+- 3 **Fazer Backup das Configurações**  
+  - Após conectar sua conta, rode o comando:  
+  ```
+  Sync: Update / Upload Settings
+  ```
+  - Isso criará um arquivo Gist no seu GitHub com todas as configurações.
+
+- 4 **Baixar as Configurações em Outro PC**  
+  - No novo PC, instale a extensão novamente.  
+  - Pressione `Ctrl + Shift + P` e escolha:  
+  ```
+  Sync: Download Settings
+  ```
+  - Ele buscará seu backup no GitHub e restaurará suas configurações!
+
+---
+
+### ** O que essa extensão sincroniza?**  
+- `settings.json` (Configurações)  
+- `keybindings.json` (Atalhos de teclado)  
+- `snippets/` (Snippets personalizados)  
+- Extensões instaladas  
+- Ícones e Temas  
+___
