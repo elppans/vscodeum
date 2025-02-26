@@ -141,11 +141,11 @@ No novo ambiente, basta **substituir** os arquivos na mesma pasta!
 ---
 # Extenção Settings Sync no VSCodium
 
-Para o **VSCodium**, já que ele não tem a sincronização embutida como o VSCode, você pode usar a extensão **"Settings Sync"** da marketplace OpenVSX.  
+Para o **VSCodium**, já que ele não tem a sincronização embutida como o VSCode, você pode usar a extensão [**"Settings Sync"**](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync) da [marketplace OpenVSX](https://marketplace.visualstudio.com/vscode).  
 
 ---
 
-### ** Como Usar a Extensão "Settings Sync" no VSCodium**  
+###  Como Usar a Extensão "Settings Sync" no VSCodium  
 
 - 1 **Instalar a Extensão**  
   - Abra o VSCodium e vá até **Extensões** (`Ctrl + Shift + X`).  
@@ -181,7 +181,7 @@ Para o **VSCodium**, já que ele não tem a sincronização embutida como o VSCo
 
 ---
 
-### ** O que essa extensão sincroniza?**  
+###  O que essa extensão sincroniza?  
 - `settings.json` (Configurações)  
 - `keybindings.json` (Atalhos de teclado)  
 - `snippets/` (Snippets personalizados)  
