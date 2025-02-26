@@ -12,6 +12,8 @@
      ```sh
      code --list-extensions > extensoes.txt
      ```
+     >No VSCodium, o comando é `codium`  
+     
    - Isso criará um arquivo `extensoes.txt` com a lista de extensões instaladas.
 
 5. **Atalhos de teclado** (opcional):
@@ -25,6 +27,8 @@
    ```sh
    cat extensoes.txt | xargs -L 1 code --install-extension
    ```
+   >No VSCodium, o comando é `codium`
+   
 4. Caso tenha exportado atalhos, substitua o `keybindings.json` pelo backup.
 
 - **Dica:** Você também pode sincronizar automaticamente com a conta Microsoft/GitHub usando a opção **Settings Sync** (`Ctrl + Shift + P` → "Turn on Settings Sync").
@@ -76,7 +80,7 @@ Local dos arquivos:
   - `settings.json` → Configurações gerais.
   - `keybindings.json` → Atalhos de teclado.
   - `snippets/` → Snippets personalizados.
-  - `extensions.json` (ou use `code --list-extensions`).
+  - `extensions.json` (ou use `code/codium --list-extensions`).
 
  **Basta copiar esses arquivos para outro computador e substituir na mesma pasta**.
 
@@ -84,8 +88,7 @@ Local dos arquivos:
 ___
 # Se você não encontrou a opção de **Sincronização de Configurações (Settings Sync)**
 
-Pode ser por alguns motivos, dependendo de qual versão do **VSCode/VSCodium** você está usando. Vamos resolver isso!  
-
+Pode ser por alguns motivos, dependendo de qual versão do **VSCode/VSCodium** você está usando.  
 ---
 
 ### **1 Verifique se o Settings Sync está disponível**  
@@ -119,7 +122,7 @@ Copie os seguintes arquivos do seu computador atual:
   - `settings.json` → Configurações gerais  
   - `keybindings.json` → Atalhos de teclado  
   - `snippets/` → Snippets personalizados  
-  - `extensions.json` (ou use `code --list-extensions`)  
+  - `extensions.json` (ou use `code/codium --list-extensions`)  
 
 - **Onde encontrar esses arquivos?**  
 
