@@ -1,0 +1,83 @@
+# Exportar as configurações do **VSCode** ou **VSCodium**
+
+### **Exportando Configurações**
+1. **Abra o VSCode/VSCodium**.
+2. **Acesse as configurações**:
+   - Use o atalho `Ctrl + Shift + P` (Windows/Linux) ou `Cmd + Shift + P` (Mac).
+   - Digite **"Preferences: Open Settings (JSON)"** e selecione a opção.
+3. **Copie o conteúdo** do arquivo `settings.json` exibido na tela.
+
+4. **Extensões instaladas**:
+   - Execute o comando:
+     ```sh
+     code --list-extensions > extensoes.txt
+     ```
+   - Isso criará um arquivo `extensoes.txt` com a lista de extensões instaladas.
+
+5. **Atalhos de teclado** (opcional):
+   - Vá até `Arquivo` > `Preferências` > `Atalhos de Teclado`.
+   - Clique no ícone de exportação no canto superior direito para salvar como `keybindings.json`.
+
+### **Importando Configurações**
+1. No novo ambiente, abra o VSCode/VSCodium.
+2. Acesse o `settings.json` novamente e substitua pelo backup salvo.
+3. Para restaurar as extensões, execute:
+   ```sh
+   cat extensoes.txt | xargs -L 1 code --install-extension
+   ```
+4. Caso tenha exportado atalhos, substitua o `keybindings.json` pelo backup.
+
+- **Dica:** Você também pode sincronizar automaticamente com a conta Microsoft/GitHub usando a opção **Settings Sync** (`Ctrl + Shift + P` → "Turn on Settings Sync").
+___
+# Configurar a **Sincronização de Configurações** manualmente no **VSCode/VSCodium**
+
+### **1 Habilitar o Settings Sync**
+1. No **VSCode/VSCodium**, vá até:
+   - **Menu** → `Gerenciar` (ícone de engrenagem no canto inferior esquerdo) → `Configurações` → Pesquise **Sync**.
+   - Ou acesse diretamente:  
+     **Arquivo** → **Preferências** → **Configurações**.
+
+2. Role até encontrar a opção **"Configuração de Sincronização" (Settings Sync)**.
+
+3. **Ative a sincronização** clicando em `Ativar`.
+
+---
+
+### **2 Escolher o que sincronizar**
+- Na janela que aparece, escolha **quais configurações serão sincronizadas**:
+  -  Configurações (`settings.json`)
+  -  Extensões
+  -  Atalhos (`keybindings.json`)
+  -  Snippets
+  -  Temas e Ícones
+
+---
+
+### **3 Conectar a uma conta**
+- O VSCode pede para você **fazer login** com uma conta da **Microsoft** ou **GitHub**.
+- **Se estiver usando o VSCodium** e não quiser uma conta, pode sincronizar manualmente copiando os arquivos mencionados antes (`settings.json`, `keybindings.json`, etc.).
+
+---
+
+### **4 Exportar e Importar Manualmente (Sem Conta)**
+Se preferir **não usar a sincronização automática**, copie os seguintes arquivos:
+
+ - **No Windows**  
+Local dos arquivos:  
+`%APPDATA%\Code\User\` *(VSCode)*  
+`%APPDATA%\VSCodium\User\` *(VSCodium)*  
+
+ - **No Linux/Mac**  
+Local dos arquivos:  
+`~/.config/Code/User/` *(VSCode)*  
+`~/.config/VSCodium/User/` *(VSCodium)*  
+
+- **Arquivos importantes para backup:**
+  - `settings.json` → Configurações gerais.
+  - `keybindings.json` → Atalhos de teclado.
+  - `snippets/` → Snippets personalizados.
+  - `extensions.json` (ou use `code --list-extensions`).
+
+ **Basta copiar esses arquivos para outro computador e substituir na mesma pasta**.
+
+ Dessa forma, você pode sincronizar **sem precisar de conta**, apenas copiando e colando os arquivos entre máquinas.
