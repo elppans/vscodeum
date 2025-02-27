@@ -250,4 +250,8 @@ ___
 
 - **Vídeos recomendados**  
   - [Não Precisamos Mais nos Preocupar em Reconfigurar o VS Code (2 FORMAS SIMPLES), Canal Código Fonte TV](https://www.youtube.com/watch?v=cTJY-z3TbTw)  
-  - [Configurando o GitHub com o VS Code - Aprenda a Criar e Conectar Seus Projetos de Programação!, Canal Mestres da Web](https://www.youtube.com/watch?v=TrDBJ9HO3yE)  
+  - [VSCode. Backup manual das configurações, Canal Clube Full-Stack](https://www.youtube.com/watch?v=THC1J5EoNZo)  
+  - [VSCode. Recuperar e sincronizar as configurações (ING), Canal Peerz](https://www.youtube.com/watch?v=xhXEtKf_Ixc)  
+___
+
+
