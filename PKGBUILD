@@ -21,7 +21,7 @@ md5sums=('SKIP')
 
 # Automatically detect and use the correct install file
 # if [ -e "${pkgname}.install" ]; then
-	install=${pkgname}.install
+	# install=${pkgname}.install
 # elif [ -e "pkgbuild.install" ]; then
 # 	install=pkgbuild.install
 # fi
