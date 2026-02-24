@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# vscodeum-extensions - Professional AUR maintainer helper
+# Copyright (c) 2026 Elppans
+# Licensed under the MIT License.
+# See LICENSE file for details.
+
 # ==============================================================================
 # Script: vscodeum-extensions
 # Descrição: Exporta e importa extensões do VS Code e Vscodium (Deb, RPM, Snap, Flatpak)
@@ -27,7 +32,8 @@ detect_binary() {
 }
 
 detect_version_type() {
-    local bin_path=$(command -v "$1")
+    local bin_path
+	bin_path=$(command -v "$1")
     
     if [[ "$bin_path" == *"/snap/"* ]]; then
         echo "Snap"
