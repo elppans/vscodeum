@@ -77,7 +77,7 @@ package() {
 
 # 	cat <<END
 
-# O "virt-gmod" foi removido.
+# O "pacote" foi removido.
 
 # END
 # }
