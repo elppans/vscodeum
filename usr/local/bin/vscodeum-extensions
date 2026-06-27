@@ -97,7 +97,7 @@ import_extensions() {
     while IFS= read -r extension || [ -n "$extension" ]; do
         if [ ! -z "$extension" ]; then
             echo -e "Instalando: ${YELLOW}$extension${NC}"
-            $bin_cmd --install-extension "$extension" --force
+            $bin_cmd --install-extension "$extension"
         fi
     done < "$input_file"
 
