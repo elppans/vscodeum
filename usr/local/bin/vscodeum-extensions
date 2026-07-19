@@ -1,4 +1,5 @@
 #!/bin/bash
+# shellcheck disable=SC2155
 
 # vscodeum-extensions - Professional AUR maintainer helper
 # Copyright (c) 2026 Elppans
