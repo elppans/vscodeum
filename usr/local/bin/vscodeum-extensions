@@ -17,6 +17,10 @@ YELLOW='\033[1;33m'
 RED='\033[0;31m'
 NC='\033[0m' # Sem cor
 
+# Configurações de retry
+MAX_RETRIES=5
+RETRY_DELAY=2
+
 # --- Funções de Detecção ---
 
 detect_binary() {
@@ -44,6 +48,63 @@ detect_version_type() {
     fi
 }
 
+# Obtém o comando do binário com retry
+get_binary_with_retry() {
+    local app=$1
+    local bin_name=$([[ "$app" == "vscodium" ]] && echo "codium" || echo "code")
+    local flatpak_id=""
+    
+    if [[ "$app" == "vscodium" ]]; then
+        flatpak_id="com.vscodium.codium"
+    else
+        flatpak_id="com.visualstudio.code"
+    fi
+    
+    local attempt=0
+    local bin_cmd=""
+    
+    while [ $attempt -lt $MAX_RETRIES ]; do
+        # Tenta Flatpak primeiro
+        if command -v "$flatpak_id" >/dev/null 2>&1; then
+            bin_cmd="flatpak run $flatpak_id"
+            break
+        fi
+        
+        # Tenta binário nativo
+        bin_cmd=$(detect_binary "$bin_name")
+        if [ -n "$bin_cmd" ]; then
+            break
+        fi
+        
+        attempt=$((attempt + 1))
+        if [ $attempt -lt $MAX_RETRIES ]; then
+            echo -e "${YELLOW}Aguardando disponibilidade do $app (tentativa $attempt/$MAX_RETRIES)...${NC}" >&2
+            sleep $RETRY_DELAY
+        fi
+    done
+    
+    echo "$bin_cmd"
+}
+
+# Valida se o binário está funcionando
+validate_binary() {
+    local bin_cmd=$1
+    local app=$2
+    
+    if [ -z "$bin_cmd" ]; then
+        echo -e "${RED}Erro: $app não encontrado após $MAX_RETRIES tentativas.${NC}"
+        echo -e "${RED}Verifique se $app está instalado e acessível.${NC}"
+        exit 1
+    fi
+    
+    # Testa se o comando responde
+    if ! $bin_cmd --version >/dev/null 2>&1; then
+        echo -e "${RED}Erro: Não foi possível verificar a versão de $app.${NC}"
+        echo -e "${RED}O binário detectado pode não estar funcionando corretamente.${NC}"
+        exit 1
+    fi
+}
+
 # --- Funções de Ação ---
 
 export_extensions() {
@@ -51,24 +112,17 @@ export_extensions() {
     local output_file=$2
     local bin_cmd=""
 
-    # Lógica específica para Flatpak
-    if [[ "$app" == "vscodium" ]] && command -v com.vscodium.codium >/dev/null 2>&1; then
-        bin_cmd="flatpak run com.vscodium.codium"
-    elif [[ "$app" == "vscode" ]] && command -v com.visualstudio.code >/dev/null 2>&1; then
-        bin_cmd="flatpak run com.visualstudio.code"
-    else
-        bin_cmd=$(detect_binary "$([[ "$app" == "vscodium" ]] && echo "codium" || echo "code")")
-    fi
-
-    if [ -z "$bin_cmd" ]; then
-        echo -e "${RED}Erro: $app não encontrado.${NC}"
-        exit 1
-    fi
+    echo -e "${YELLOW}Detectando $app...${NC}"
+    bin_cmd=$(get_binary_with_retry "$app")
+    validate_binary "$bin_cmd" "$app"
 
     echo -e "${BLUE}Detectado:${NC} $app ($(detect_version_type "$bin_cmd"))"
     echo -e "${YELLOW}Exportando extensões para $output_file...${NC}"
     
-    $bin_cmd --list-extensions > "$output_file"
+    if ! $bin_cmd --list-extensions > "$output_file" 2>/dev/null; then
+        echo -e "${RED}Erro ao exportar extensões.${NC}"
+        exit 1
+    fi
     
     echo -e "${GREEN}Sucesso! $(wc -l < "$output_file") extensões exportadas.${NC}"
 }
@@ -78,30 +132,39 @@ import_extensions() {
     local input_file=$2
     local bin_cmd=""
 
-    # Lógica de comando idêntica à exportação
-    if [[ "$app" == "vscodium" ]] && command -v com.vscodium.codium >/dev/null 2>&1; then
-        bin_cmd="flatpak run com.vscodium.codium"
-    elif [[ "$app" == "vscode" ]] && command -v com.visualstudio.code >/dev/null 2>&1; then
-        bin_cmd="flatpak run com.visualstudio.code"
-    else
-        bin_cmd=$(detect_binary "$([[ "$app" == "vscodium" ]] && echo "codium" || echo "code")")
-    fi
-
     if [ ! -f "$input_file" ]; then
         echo -e "${RED}Erro: Arquivo $input_file não encontrado.${NC}"
         exit 1
     fi
 
+    echo -e "${YELLOW}Detectando $app...${NC}"
+    bin_cmd=$(get_binary_with_retry "$app")
+    validate_binary "$bin_cmd" "$app"
+
     echo -e "${BLUE}Iniciando importação para $app...${NC}"
+    
+    local count=0
+    local failed=0
     
     while IFS= read -r extension || [ -n "$extension" ]; do
         if [ ! -z "$extension" ]; then
             echo -e "Instalando: ${YELLOW}$extension${NC}"
-            $bin_cmd --install-extension "$extension"
+            if ! $bin_cmd --install-extension "$extension" 2>/dev/null; then
+                echo -e "${RED}  ✗ Falha ao instalar $extension${NC}"
+                failed=$((failed + 1))
+            else
+                echo -e "${GREEN}  ✓ Instalado com sucesso${NC}"
+                count=$((count + 1))
+            fi
         fi
     done < "$input_file"
 
     echo -e "${GREEN}Processo de importação concluído!${NC}"
+    echo -e "  Sucesso: $count | Falhas: $failed"
+    
+    if [ $failed -gt 0 ]; then
+        exit 1
+    fi
 }
 
 show_help() {
@@ -120,6 +183,10 @@ show_help() {
     echo "  $0 export vscodium minhas_ext.txt"
     echo "  $0 import vscode lista_backup.txt"
     echo "  $0 export vscode  # Salva por padrão em vscode_extensions.txt"
+    echo ""
+    echo -e "${YELLOW}Nota sobre ambiente:${NC}"
+    echo "  Este script aguarda até $MAX_RETRIES segundos para detectar"
+    echo "  o editor, útil durante inicialização do sistema."
     echo ""
 }
 
@@ -156,4 +223,3 @@ if [ $# -lt 2 ]; then
 else
     main "$@"
 fi
-
