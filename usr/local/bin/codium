@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+CONFIG_FILE="/etc/vscodeum/vscodeum.conf"
+
+if [ -f "$CONFIG_FILE" ]; then
+    # Importa as variáveis de forma segura se o formato for estritamente KEY=VALUE
+    # shellcheck disable=SC1090
+    . "$CONFIG_FILE"
+fi
+
+case "$1" in
+    -[vV]|--[vV][eE][rR][sS][iI][oO][nN])
+        echo "Version: ${VERSION:-Desconhecida}"
+        exit 0
+        ;;
+esac
+
+# 1. Binário nativo do sistema
+if [[ -x /usr/bin/codium ]]; then
+	exec /usr/bin/codium "$@"
+	# 2. Fallback para Flatpak
+elif command -v flatpak &>/dev/null && flatpak info com.vscodium.codium &>/dev/null; then
+	exec flatpak run com.vscodium.codium "$@"
+else
+	# Caso nenhum seja encontrado, exibe uma mensagem de erro
+	echo "Nenhuma instalação do 'codium' foi encontrada. Certifique-se de que o codium está instalado!"
+	exit 1
+fi

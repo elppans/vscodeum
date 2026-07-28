@@ -1,5 +1,5 @@
 #!/bin/bash
-# shellcheck disable=SC2155
+# shellcheck disable=SC2155,SC2086,SC1090
 
 # vscodeum-extensions - Professional AUR maintainer helper
 # Copyright (c) 2026 Elppans
@@ -11,16 +11,19 @@
 # Descrição: Exporta e importa extensões do VS Code e Vscodium (Deb, RPM, Snap, Flatpak)
 # ==============================================================================
 
-# Cores para saída
-GREEN='\033[0;32m'
-BLUE='\033[0;34m'
-YELLOW='\033[1;33m'
-RED='\033[0;31m'
-NC='\033[0m' # Sem cor
+CONFIG_FILE="/etc/vscodeum/vscodeum.conf"
 
-# Configurações de retry
-MAX_RETRIES=5
-RETRY_DELAY=2
+if [ -f "$CONFIG_FILE" ]; then
+    # Importa as variáveis de forma segura se o formato for estritamente KEY=VALUE
+    . "$CONFIG_FILE"
+fi
+
+case "$1" in
+    -[vV]|--[vV][eE][rR][sS][iI][oO][nN])
+        echo "Version: ${VERSION:-Desconhecida}"
+        exit 0
+        ;;
+esac
 
 # --- Funções de Detecção ---
 

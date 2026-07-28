@@ -8,11 +8,11 @@ arch=('any')
 license=('MIT')
 depends=('bash' 'coreutils')
 optdepends=('flatpak: Support for managing extensions in Flatpak versions'
-			'snapd: Support for managing extensions in Snap versions'
-			'visual-studio-code-bin: Support for the official VS Code (Microsoft)'
-			'code: Support for the Code - OSS version'
-			'vscodium-bin: Support for VSCodium (Open Source)'
-			'bash-completion: Autocomplete commands in Bash')
+	'snapd: Support for managing extensions in Snap versions'
+	'visual-studio-code-bin: Support for the official VS Code (Microsoft)'
+	'code: Support for the Code - OSS version'
+	'vscodium-bin: Support for VSCodium (Open Source)'
+	'bash-completion: Autocomplete commands in Bash')
 pkgdesc="It facilitates the export and import of extensions in VSCode and VScodium"
 url="https://github.com/elppans/${pkgname}"
 source=("git+${url}.git#branch=main")
@@ -20,18 +20,21 @@ sha256sums=('SKIP')
 md5sums=('SKIP')
 
 # Automatically detect and use the correct install file
-# if [ -e "${pkgname}.install" ]; then
-	# install=${pkgname}.install
-# elif [ -e "pkgbuild.install" ]; then
-# 	install=pkgbuild.install
-# fi
+if [ -e "${pkgname}.install" ]; then
+	install=${pkgname}.install
+elif [ -e "pkgbuild.install" ]; then
+	install=pkgbuild.install
+fi
 
+pkgver() {
+	cd "$srcdir/$_pkgname"
+	printf "r%s.%s\n" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
 prepare() {
 	cd "${srcdir}/${pkgname}"
 	# Add any preparation steps here, if needed
 	# For example: patch -p1 < "${srcdir}/patch-file.patch"
 }
-
 package() {
 	cd "${srcdir}/${pkgname}"
 
@@ -43,12 +46,30 @@ package() {
 	fi
 
 	# Install files
-	local dirs=("usr")
+	local dirs=("usr" "etc")
 	for dir in "${dirs[@]}"; do
 		if [ -d "${srcdir}/${dir}" ]; then
 			cp -a "${srcdir}/${dir}" "${pkgdir}/"
 		fi
 	done
+
+	# Define Version
+	CONFIG_FILE="${pkgdir}/etc/${pkgname}/${pkgname}.conf"
+
+	if [ -f "$CONFIG_FILE" ]; then
+		# 1. Se o arquivo estiver completamente vazio
+		if [ ! -s "$CONFIG_FILE" ]; then
+			echo "VERSION=\"${pkgver}\"" >"$CONFIG_FILE"
+
+		# 2. Se já contiver a variável VERSION (com ou sem aspas/espaços)
+		elif grep -qE '^[[:space:]]*VERSION=' "$CONFIG_FILE"; then
+			sed -i -E "s/^[[:space:]]*VERSION=.*/VERSION=\"${pkgver}\"/" "$CONFIG_FILE"
+
+		# 3. Se o arquivo não estiver vazio, mas a variável VERSION ainda não existir
+		else
+			echo "VERSION=\"${pkgver}\"" >>"$CONFIG_FILE"
+		fi
+	fi
 
 	# Install license file if present
 	if [ -f "LICENSE" ]; then
