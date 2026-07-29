@@ -1,10 +1,3 @@
-# VSCode Config
+Removido — conteúdo movido para documentos/MERGED_DOCUMENTOS.md
 
-Anotações de configurações a fazer no pós install do VSCode
-
-**Configuração manual**
-
-* Configurações
-- Explorador
-	- Diretório
-	Compact Folders, formato compacto (padrão), desabilitar.
+Arquivo preservado como placeholder.

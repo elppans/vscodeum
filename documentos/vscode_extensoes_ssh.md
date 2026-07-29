@@ -1,6 +1,3 @@
-Este arquivo foi consolidado — consulte os guias principais:
+Removido — conteúdo movido para documentos/MERGED_DOCUMENTOS.md
 
-- documentos/ssh-chaves-acesso.md (SSH e chaves)
-- documentos/vscode.md (integração e extensões)
-
-Arquivo original: documentos/vscode_extensoes_ssh.md
+Arquivo preservado como placeholder.
