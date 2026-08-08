@@ -27,8 +27,8 @@ elif [ -e "pkgbuild.install" ]; then
 fi
 
 pkgver() {
-	cd "$srcdir/$_pkgname"
-	printf "r%s.%s\n" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+	cd "$srcdir/$_pkgname" || return 1
+	printf 'r%s.%s' "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 prepare() {
 	cd "${srcdir}/${pkgname}"
