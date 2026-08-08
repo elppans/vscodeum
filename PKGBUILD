@@ -3,8 +3,10 @@
 
 pkgname=vscodeum
 _pkgname="${pkgname}"
-pkgver=$(date +%y.%m.%d)
-pkgrel=$(date +%H%M)
+datever="$(date +%y.%m.%d)"
+daterel="$(date +%H%M)"
+pkgver="${datever}"
+pkgrel="${daterel}"
 arch=('any')
 license=('MIT')
 depends=('bash' 'coreutils' 'nautilus-python')
