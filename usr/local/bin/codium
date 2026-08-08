@@ -12,7 +12,10 @@ case "$1" in
     -[vV]|--[vV][eE][rR][sS][iI][oO][nN])
         echo "Version: ${VERSION:-Desconhecida}"
         exit 0
-        ;;
+    ;;
+	-[eE]|--[eE][xX][tT][eE][nN][sS][iI][oO][nN][sS])
+		/usr/local/bin/vscodeum-extensions "$@"
+	;;
 esac
 
 # 1. Binário nativo do sistema
@@ -21,8 +24,12 @@ if [[ -x /usr/bin/codium ]]; then
 	# 2. Fallback para Flatpak
 elif command -v flatpak &>/dev/null && flatpak info com.vscodium.codium &>/dev/null; then
 	exec flatpak run com.vscodium.codium "$@"
+elif [[ -x /usr/bin/code ]]; then
+	exec /usr/bin/code "$@"
+elif command -v flatpak &>/dev/null && flatpak info com.visualstudio.code &>/dev/null; then
+	exec flatpak run com.visualstudio.code "$@"
 else
 	# Caso nenhum seja encontrado, exibe uma mensagem de erro
-	echo "Nenhuma instalação do 'codium' foi encontrada. Certifique-se de que o codium está instalado!"
+	echo "Nenhuma instalação foi encontrada. Certifique-se de que o code ou codium está instalado!"
 	exit 1
 fi
