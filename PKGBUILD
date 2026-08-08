@@ -6,7 +6,7 @@ pkgver=1.0.1
 pkgrel=1
 arch=('any')
 license=('MIT')
-depends=('bash' 'coreutils')
+depends=('bash' 'coreutils' 'nautilus-python')
 optdepends=('flatpak: Support for managing extensions in Flatpak versions'
 	'snapd: Support for managing extensions in Snap versions'
 	'visual-studio-code-bin: Support for the official VS Code (Microsoft)'
