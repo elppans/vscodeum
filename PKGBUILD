@@ -2,8 +2,9 @@
 # shellcheck disable=all
 
 pkgname=vscodeum
-pkgver=1.0.1
-pkgrel=1
+_pkgname="${pkgname}"
+pkgver=$(date +%y.%m.%d)
+pkgrel=$(date +%H%M)
 arch=('any')
 license=('MIT')
 depends=('bash' 'coreutils' 'nautilus-python')
