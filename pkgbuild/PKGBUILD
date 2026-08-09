@@ -86,16 +86,12 @@ package() {
 }
 cat >"${pkgname}.install" <<EOF
 post_install() {
+	cp -af "/etc/skel/.vscode-oss" "$HOME/"
 	cat <<END
 The "$pkgname" was successfully installed...
+Run the command to import the extensions manually:
+Example: vscodium-extensions import vscodium "$HOME/.vscode-oss/vscodium_extensions.txt"
 END
-	cp -af "/etc/skel/.vscode-oss" "$HOME/"
-if [ -f "$HOME/.vscode-oss/vscodium_extensions.txt" ]; then
-	/usr/local/bin/vscodeum-extensions import vscodium "$HOME/.vscode-oss/vscodium_extensions.txt"
-else
-	echo "Run the command to import the extensions manually:"
-	echo "Example: vscodium-extensions import vscodium extensions.txt"
-fi
 }
 post_upgrade() {
     post_install
