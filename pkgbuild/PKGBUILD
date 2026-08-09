@@ -91,6 +91,7 @@ post_install() {
 The "$pkgname" was successfully installed...
 Run the command to import the extensions manually:
 Example: vscodium-extensions import vscodium "$HOME/.vscode-oss/vscodium_extensions.txt"
+To see more options, use the help
 END
 }
 post_upgrade() {
