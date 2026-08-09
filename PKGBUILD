@@ -84,25 +84,25 @@ package() {
 		install -Dm644 README.md "${pkgdir}/usr/share/doc/${pkgname}/README.md"
 	fi
 }
-# cat > "${pkgname}.install" <<EOF
-# post_install() {
-# 	cat <<END
-
-# O pacote foi instalado com sucesso...
-
-# END
-# }
-
-# post_upgrade() {
-#     post_install
-# }
-
-# post_remove() {
-
-# 	cat <<END
-
-# O "pacote" foi removido.
-
-# END
-# }
-# EOF
+cat >"${pkgname}.install" <<EOF
+post_install() {
+	cat <<END
+The "$pkgname" was successfully installed...
+END
+	cp -af "/etc/skel/.vscode-oss" "$HOME/"
+if [ -f "$HOME/.vscode-oss/vscodium_extensions.txt" ]; then
+	/usr/local/bin/vscodeum-extensions import vscodium "$HOME/.vscode-oss/vscodium_extensions.txt"
+else
+	echo "Run the command to import the extensions manually:"
+	echo "Example: vscodium-extensions import vscodium extensions.txt"
+fi
+}
+post_upgrade() {
+    post_install
+}
+post_remove() {
+	cat <<END
+The "$pkgname" was removed.
+END
+}
+EOF
