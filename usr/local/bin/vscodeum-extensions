@@ -18,6 +18,23 @@ if [ -f "$CONFIG_FILE" ]; then
     . "$CONFIG_FILE"
 fi
 
+# --- Defaults de segurança (evita quebrar se o conf faltar/estiver incompleto) ---
+MAX_RETRIES="${MAX_RETRIES:-5}"
+RETRY_DELAY="${RETRY_DELAY:-2}"
+RED="${RED:-\033[0;31m}"
+GREEN="${GREEN:-\033[0;32m}"
+YELLOW="${YELLOW:-\033[1;33m}"
+BLUE="${BLUE:-\033[0;34m}"
+NC="${NC:-\033[0m}"
+
+# Não quebrar se o comando estiver sendo executado como subcomando
+if command -v flatpak &>/dev/null; then
+        if ! echo  "$PATH" | grep -q "flatpak"; then
+                export "PATH=/var/lib/flatpak/exports/bin:$PATH"
+                echo "grep = $PATH"
+        fi
+fi
+
 case "$1" in
     -[vV]|--[vV][eE][rR][sS][iI][oO][nN])
         echo "Version: ${VERSION:-Desconhecida}"
